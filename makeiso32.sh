@@ -162,6 +162,7 @@ sed -i '/^)/i\ \ ["/usr/local/sbin/alchg.sh"]="0:0:700"' ./archlive/profiledef.s
 sed -i '/^)/i\ \ ["/usr/local/sbin/cowspace.sh"]="0:0:700"' ./archlive/profiledef.sh
 sed -i '/^)/i\ \ ["/etc/skel/alchg/conky.sh"]="0:0:755"' ./archlive/profiledef.sh
 sed -i '/^)/i\ \ ["/etc/skel/alchg/conky_transparent.sh"]="0:0:755"' ./archlive/profiledef.sh
+sed -i '/^)/i\ \ ["/etc/skel/alchg/lxrandr.sh"]="0:0:755"' ./archlive/profiledef.sh
 sed -i '/^)/i\ \ ["/etc/skel/alchg/exec.sh"]="0:0:755"' ./archlive/profiledef.sh
 sed -i '/^)/i\ \ ["/etc/skel/alchg/menu.sh"]="0:0:755"' ./archlive/profiledef.sh
 sed -i '/^)/i\ \ ["/etc/skel/alchg/pipe_menu.sh"]="0:0:755"' ./archlive/profiledef.sh
@@ -644,6 +645,14 @@ fi
 
 EOF
 
+cat >./archlive/airootfs/etc/skel/alchg/lxrandr.sh<<"EOF"
+#! /bin/bash
+
+lxrandr
+echo "" >>/home/user/.config/conky/conky.conf
+nitrogen --restore
+EOF
+
 
 mkdir -p ./archlive/airootfs/usr/share/icons/hicolor/64x64/apps/
 until curl -L -Y 10240 -C - --limit-rate 10240K -k -o "./archlive/airootfs/usr/share/icons/hicolor/64x64/apps/utilities-terminal.png" "https://icon-icons.com/downloadimage.php?id=34340&root=317/PNG/64/&file=terminal-icon_34340.png";do date;echo RETRY;done
@@ -889,7 +898,7 @@ cat >./archlive/airootfs/etc/skel/.config/openbox/menu_jp.xml<<"EOF"
   </item>
   <item label="画面">
     <action name="Execute">
-     <command>lxrandr</command>
+     <command>/home/user/alchg/lxrandr.sh</command>
     </action>
   </item>
   <item label="壁紙">
@@ -1017,7 +1026,7 @@ cat >./archlive/airootfs/etc/skel/.config/openbox/menu_en.xml<<"EOF"
   </item>
   <item label="Screen">
     <action name="Execute">
-     <command>lxrandr</command>
+     <command>/home/user/alchg/lxrandr.sh</command>
     </action>
   </item>
   <item label="Wallpaper">
