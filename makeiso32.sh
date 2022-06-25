@@ -292,11 +292,8 @@ fi
 #xterm -geometry 80x20+494-0 &
 #exec xterm -geometry 80x66+0+0 -name login
 export LANG=ja_JP.UTF-8
-GTK_IM_MODULE=fcitx
-QT_IM_MODULE=fcitx
-XMODIFIERS=@im=fcitx
 setxkbmap jp &
-fcitx5 &
+sleep 2 && fcitx5 &
 #xrandr --output Virtual-1 --mode 1366x768 &
 tint2 &
 nitrogen --restore &
@@ -491,21 +488,6 @@ window.inactive.title.separator.color: #eeeee6
 window.label.text.justify: center
 EOF
 
-
-
-cat >./archlive/airootfs/etc/environment<<"EOF"
-#
-# This file is parsed by pam_env module
-#
-# Syntax: simple "KEY=VAL" pairs on separate lines
-#
-GTK_IM_MODULE=fcitx
-QT_IM_MODULE=fcitx
-XMODIFIERS=@im=fcitx
-EOF
-
-
-
 mkdir -p ./archlive/airootfs/etc/skel/.local/share/applications
 cat >./archlive/airootfs/etc/skel/.local/share/applications/open-openbox-menu.desktop<<"EOF"
 [Desktop Entry]
@@ -519,6 +501,17 @@ Icon=/home/user/icon/menu.png
 Terminal=false
 EOF
 
+
+cat >./archlive/airootfs/etc/environment<<"EOF"
+#
+# This file is parsed by pam_env module
+#
+# Syntax: simple "KEY=VAL" pairs on separate lines
+#
+GTK_IM_MODULE=fcitx
+QT_IM_MODULE=fcitx
+XMODIFIERS=@im=fcitx
+EOF
 
 
 cat >./archlive/airootfs/etc/skel/alchg/conky.sh<<"EOF"
@@ -650,6 +643,7 @@ else
 fi                                                                                                                                                                       
 
 EOF
+
 
 mkdir -p ./archlive/airootfs/usr/share/icons/hicolor/64x64/apps/
 until curl -L -Y 10240 -C - --limit-rate 10240K -k -o "./archlive/airootfs/usr/share/icons/hicolor/64x64/apps/utilities-terminal.png" "https://icon-icons.com/downloadimage.php?id=34340&root=317/PNG/64/&file=terminal-icon_34340.png";do date;echo RETRY;done
@@ -1995,7 +1989,7 @@ mouse_scroll_down = next_task
 # System tray (notification area)
 systray_padding = 0 0 2
 systray_background_id = 2
-systray_sort = left2right
+systray_sort = right2left
 systray_icon_size = 24
 systray_icon_asb = 100 0 0
 systray_monitor = 1
@@ -2211,7 +2205,7 @@ mouse_scroll_down = next_task
 # System tray (notification area)
 systray_padding = 0 0 2
 systray_background_id = 2
-systray_sort = left2right
+systray_sort = right2left
 systray_icon_size = 24
 systray_icon_asb = 100 0 0
 systray_monitor = 1
