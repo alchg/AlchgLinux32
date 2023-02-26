@@ -29,6 +29,8 @@ sed -i "s/'-Xdict-size' '1M'//" ./archlive/profiledef.sh
 
 
 sed -i "s/^linux$//" ./archlive/packages.i686
+sed -i "s/^ipw2100-fw$//" ./archlive/packages.i686
+sed -i "s/^ipw2200-fw$//" ./archlive/packages.i686
 cat >>./archlive/packages.i686<<"EOF"
 linux-lts
 otf-ipafont
